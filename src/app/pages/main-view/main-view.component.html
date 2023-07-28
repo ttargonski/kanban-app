@@ -1,0 +1,11 @@
+<app-board-header
+  (onAddColumn)="addColumn($event)"
+  (onRemoveBoard)="removeBoard()"
+  (onRenameBoard)="renameBoard($event)"
+  [boardName]="board.name"
+></app-board-header>
+
+<app-board-wrapper
+  (saveBoard)="saveBoard()"
+  [columns]="board.columns"
+></app-board-wrapper>

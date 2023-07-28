@@ -1,0 +1,50 @@
+<!-- board header -->
+<div class="board-header">
+  <div class="board-name"><mat-icon>dashboard</mat-icon> {{ boardName }}</div>
+  <button mat-raised-button color="primary" (click)="toggleForm('add-column')">
+    <mat-icon>playlist_add</mat-icon> Add column
+  </button>
+  <button mat-raised-button color="primary" (click)="toggleForm('rename')">
+    <mat-icon>edit</mat-icon> Rename board
+  </button>
+  <button mat-raised-button color="primary" (click)="toggleForm('delete')">
+    <mat-icon>delete_outline</mat-icon> Delete board
+  </button>
+</div>
+
+<!-- add column popup -->
+<app-popup-form
+  *ngIf="formOpen === 'add-column'"
+  [buttonName]="'Add'"
+  [headerName]="'Create new column'"
+  (onAdd)="addColumn($event)"
+  (onClose)="toggleForm('')"
+></app-popup-form>
+
+<!-- rename board popup -->
+<app-popup-form
+  *ngIf="formOpen === 'rename'"
+  [buttonName]="'Change'"
+  [headerName]="'Change board name'"
+  (onAdd)="renameBoard($event)"
+  (onClose)="toggleForm('')"
+></app-popup-form>
+
+<!-- delete board popup -->
+<form *ngIf="formOpen === 'delete'" class="add-column-form">
+  <h3 style="text-align: center">
+    Do you want to delete the
+    <span style="color: firebrick">{{ boardName }}</span> board?
+  </h3>
+  <button
+    type="submit"
+    mat-raised-button
+    color="primary"
+    (click)="removeBoard()"
+  >
+    Yes
+  </button>
+  <button style="margin-top: 5px" mat-stroked-button (click)="toggleForm('')">
+    No
+  </button>
+</form>
