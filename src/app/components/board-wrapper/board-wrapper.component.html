@@ -1,0 +1,61 @@
+<div class="board-columns" cdkDropListGroup>
+  <div *ngIf="columns.length == 0" style="color: white">
+    No column to show, add new column
+  </div>
+  <!-- COLUMN -->
+  <mat-card
+    class="board-column"
+    cdkDropList
+    [cdkDropListData]="column.tasks"
+    (cdkDropListDropped)="drop($event)"
+    *ngFor="let column of columns"
+  >
+    <!-- COLUMN HEADER -->
+    <mat-card-header class="column-header">
+      <mat-card-title class="column-title">
+        {{ column.name }}
+      </mat-card-title>
+
+      <button mat-icon-button [mat-menu-trigger-for]="menu">
+        <mat-icon>more_vert</mat-icon>
+      </button>
+
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item (click)="toggleForm(column.id, 'add-task')">
+          <mat-icon>playlist_add</mat-icon>Add task
+        </button>
+        <button mat-menu-item (click)="removeColumn(column.id)">
+          <mat-icon>delete_forever</mat-icon>Delete column
+        </button>
+        <button mat-menu-item (click)="toggleForm(column.id, 'rename-column')">
+          <mat-icon>edit</mat-icon>Rename column
+        </button>
+      </mat-menu>
+    </mat-card-header>
+
+    <!-- TASKS -->
+
+    <app-task-list
+      (saveTask)="onSaveColumn()"
+      [tasks]="column.tasks"
+    ></app-task-list>
+  </mat-card>
+</div>
+
+<!-- add task popup -->
+<app-popup-form
+  *ngIf="formOpen === 'add-task'"
+  [buttonName]="'Add'"
+  [headerName]="'Create new task'"
+  (onAdd)="saveTask($event)"
+  (onClose)="toggleForm('', '')"
+></app-popup-form>
+
+<!-- rename column popup -->
+<app-popup-form
+  *ngIf="formOpen === 'rename-column'"
+  [buttonName]="'Change'"
+  [headerName]="'Change column name'"
+  (onAdd)="renameColumn($event)"
+  (onClose)="toggleForm('', '')"
+></app-popup-form>

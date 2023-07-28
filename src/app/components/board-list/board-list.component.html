@@ -1,0 +1,25 @@
+<div class="board-list-title">Your Boards</div>
+
+<div class="board-list-container">
+  <mat-card
+    routerLink="/board/{{ board.id }}"
+    *ngFor="let board of boardsList"
+    class="board"
+  >
+    <mat-icon>dashboard</mat-icon>
+    <p>{{ board.name }}</p>
+  </mat-card>
+
+  <mat-card (click)="toggleForm()" class="board new">
+    <mat-icon>note_add</mat-icon>
+    <p>create board</p>
+  </mat-card>
+</div>
+
+<app-popup-form
+  *ngIf="formOpen"
+  [buttonName]="'Add'"
+  [headerName]="'Create new board'"
+  (onAdd)="onSubmit($event)"
+  (onClose)="toggleForm()"
+></app-popup-form>

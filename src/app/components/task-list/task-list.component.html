@@ -1,0 +1,8 @@
+<div class="task-container">
+  <mat-card class="task" *ngFor="let task of tasks" cdkDrag>
+    <mat-card-content>{{ task.text }}</mat-card-content>
+    <button mat-icon-button (click)="onDelete(task.id)">
+      <mat-icon class="btn-delete-task">delete_forever</mat-icon>
+    </button>
+  </mat-card>
+</div>

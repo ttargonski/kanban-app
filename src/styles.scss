@@ -1,1 +1,240 @@
-/* You can add global styles to this file, and also import other style files */
+// global styles
+
+html,
+body {
+  width: 100%;
+}
+
+*,
+.mat-h3,
+.mat-subtitle-1,
+.mat-typography .mat-h3,
+.mat-typography .mat-subtitle-1,
+.mat-typography h3 {
+  font-family: "Roboto", sans-serif;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-image: linear-gradient(
+    to right top,
+    #0a111d,
+    #154858,
+    #318781,
+    #87c592,
+    #fffca2
+  );
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 10px;
+  position: relative;
+}
+
+.navbar {
+  padding: 10px;
+  margin: 0;
+  background-color: rgba(255, 255, 255, 0.8);
+  a {
+    color: #154858;
+    text-decoration: none;
+    padding-right: 15px;
+  }
+  .logo {
+    font-weight: bold;
+    font-size: larger;
+    margin-left: 10px;
+  }
+}
+
+.board-header {
+  display: flex;
+  min-height: 50px;
+  margin: 45px 20px;
+  align-items: start;
+  flex-wrap: wrap;
+  .board-name {
+    color: white;
+    font-size: 36px;
+    font-weight: 700;
+    padding-right: 15px;
+    margin-bottom: 15px;
+    border-right: solid 2px rgba(255, 255, 255, 0.7);
+  }
+  button {
+    margin: 5px 0 15px 15px;
+  }
+}
+
+.board-columns {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: start;
+  align-items: flex-start;
+  color: #154858;
+
+  .board-column {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 0;
+    min-width: 300px;
+    min-height: 300px;
+    margin: 20px;
+    background-color: rgba(255, 255, 255, 0.7);
+    overflow: hidden;
+    .column-header {
+      display: flex;
+      padding: 10px 25px;
+      margin-bottom: 25px;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      background-color: rgba(255, 255, 255, 0.5);
+    }
+
+    .task-container {
+      display: flex;
+      flex-direction: column;
+      padding: 0 20px 20px 20px;
+
+      .task {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        margin-bottom: 15px;
+        padding: 3px;
+        justify-content: space-between;
+        box-shadow: 0px 18px 24px -24px rgba(0, 0, 0, 1);
+        .btn-delete-task {
+          display: none;
+        }
+        &:hover {
+          cursor: pointer;
+          .btn-delete-task {
+            display: block;
+          }
+        }
+      }
+    }
+  }
+}
+
+.cdk-drag-preview {
+  box-sizing: border-box;
+  box-shadow: 0px 18px 24px -18px rgba(0, 0, 0, 1);
+  .btn-delete-task {
+    display: none;
+  }
+}
+
+.cdk-drag-placeholder {
+  opacity: 0;
+}
+
+.cdk-drag-animating {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.example-box:last-child {
+  border: none;
+}
+
+.example-list.cdk-drop-list-dragging .example-box:not(.cdk-drag-placeholder) {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+.add-column-form {
+  background-color: rgba(255, 255, 255, 1);
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  max-width: 350px;
+  width: 100%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  border: solid 1px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  padding: 25px;
+  box-shadow: 0px 18px 24px -18px rgba(0, 0, 0, 1);
+  border-radius: 5px;
+}
+
+header {
+  margin: 70px 0;
+  padding: 25px 0;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  .home-img {
+    width: 40%;
+    img {
+      display: block;
+      width: 90%;
+    }
+  }
+  .home-text {
+    color: white;
+    h1 {
+      font-size: 48px;
+      font-weight: 700;
+      line-height: 3rem;
+    }
+    p {
+      font-size: 20px;
+      line-height: 2rem;
+    }
+  }
+}
+
+.board-list-title {
+  color: white;
+  font-weight: 700;
+  font-size: 46px;
+  margin: 35px 0;
+}
+.board-list-container {
+  background-color: rgba(255, 255, 255, 0.5);
+  min-height: 400px;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: row;
+  padding: 15px;
+  gap: 15px;
+  margin-bottom: 50px;
+  flex-wrap: wrap;
+  .board {
+    width: 150px;
+    height: 150px;
+    background-color: rgba(255, 255, 255, 0.9);
+    font-weight: 500;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    color: #154858;
+    cursor: pointer;
+    &:hover {
+      background-color: rgba(255, 255, 255, 1);
+    }
+    &.new {
+      background-color: rgba(255, 255, 255, 0.4);
+      &:hover {
+        background-color: rgba(255, 255, 255, 0.9);
+      }
+    }
+  }
+}

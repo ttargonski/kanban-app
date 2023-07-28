@@ -1,0 +1,12 @@
+<form (ngSubmit)="onSubmit()" class="add-column-form">
+  <h3>{{ headerName }}</h3>
+  <mat-form-field>
+    <input matInput [(ngModel)]="inputText" name="inputText" />
+  </mat-form-field>
+  <button type="submit" mat-raised-button color="primary">
+    {{ buttonName }}
+  </button>
+  <button style="margin-top: 5px" mat-stroked-button (click)="close()">
+    Close
+  </button>
+</form>
