@@ -1,4 +1,29 @@
-<mat-toolbar class="navbar">
-  <a href="#" class="logo">KanbanApp</a>
-  <a routerLink="boards">Your Boards</a>
-</mat-toolbar>
+<div class="navbar">
+  <div class="container navbar-container">
+    <div>
+      <a href=" " class="logo">KanbanApp</a>
+      <a routerLink="boards" *ngIf="isLogged()">Boards</a>
+    </div>
+    <div
+      style="display: flex; flex-direction: row; align-items: center; gap: 1rem"
+      *ngIf="isLogged()"
+    >
+      <mat-icon>account_circle</mat-icon>
+      <div>
+        {{ userEmail }}
+      </div>
+      <button (click)="logout()" mat-stroked-button color="primary">
+        Logout
+      </button>
+    </div>
+    <div
+      style="display: flex; flex-direction: row; align-items: center; gap: 1rem"
+      *ngIf="!isLogged()"
+    >
+      <a routerLink="/register-user" mat-raised-button color="primary"
+        >Sign up for free</a
+      >
+      <a routerLink="/sign-in" mat-stroked-button color="primary">Sign Ip</a>
+    </div>
+  </div>
+</div>

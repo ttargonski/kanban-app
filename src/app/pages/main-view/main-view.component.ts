@@ -16,6 +16,7 @@ export class MainViewComponent implements OnInit {
     id: '',
     name: '',
     columns: [],
+    uid: '',
   };
 
   constructor(
@@ -29,7 +30,7 @@ export class MainViewComponent implements OnInit {
       next: (params) => {
         let id = params.get('id');
         if (id) {
-          this.boardsService.getLocalStorage();
+          //this.boardsService.getAllBoards();
           this.board = this.boardsService.getBoard(id);
 
           if (this.board.id === '') {
@@ -52,7 +53,7 @@ export class MainViewComponent implements OnInit {
 
   removeBoard() {
     this.boardsService.deleteBoard(this.board.id);
-    this.router.navigate(['']);
+    this.router.navigate(['boards']);
   }
 
   addColumn(name: string) {

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Board } from 'src/app/models/board.model';
-import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 import { BoardsService } from 'src/app/services/boards.service';
+
 import { v4 as uuidv4 } from 'uuid';
 
 @Component({
@@ -20,21 +20,20 @@ export class BoardListComponent implements OnInit {
   }
 
   onSubmit(name: string) {
+    const user = JSON.parse(localStorage.getItem('user')!);
+
     const board: Board = {
       id: uuidv4(),
       name: name,
       columns: [],
+      uid: user.uid,
     };
+    // local
     this.boardsService.addBoard(board);
     this.toggleForm();
   }
 
   ngOnInit(): void {
-    this.boardsService.getLocalStorage();
     this.boardsList = this.boardsService.getAllBoards();
-  }
-
-  drop(event: CdkDragDrop<Board>) {
-    moveItemInArray(this.boardsList, event.previousIndex, event.currentIndex);
   }
 }

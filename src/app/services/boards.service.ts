@@ -1,13 +1,15 @@
 import { Injectable } from '@angular/core';
 import { Board } from '../models/board.model';
+import { DataService } from './data.service';
+import { AuthService } from '../shared/services/auth.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class BoardsService {
-  constructor() {}
-
   boards: Board[] = [];
+
+  constructor(private fireData: DataService, private auth: AuthService) {}
 
   // localstorage
 
@@ -16,6 +18,7 @@ export class BoardsService {
     if (retString) {
       let boards = JSON.parse(retString);
       this.boards = boards;
+      return boards;
     }
   }
 
@@ -23,10 +26,12 @@ export class BoardsService {
     localStorage.setItem('boards', JSON.stringify(this.boards));
   }
 
-  // boards
+  // boards crud
 
   getAllBoards(): Board[] {
-    return this.boards;
+    //const user = JSON.parse(localStorage.getItem('user')!);
+    this.fireData.getBoards(this.auth.getUserId());
+    return this.getLocalStorage();
   }
 
   getBoard(id: string): Board {
@@ -38,12 +43,15 @@ export class BoardsService {
         id: '',
         name: '',
         columns: [],
+        uid: '',
       };
     }
   }
 
   addBoard(board: Board) {
     this.boards.push(board);
+    //firebase
+    this.fireData.createBoard(board.id, board);
     this.saveLocalStorage();
   }
 
@@ -52,6 +60,8 @@ export class BoardsService {
 
     if (boardWithIdIndex > -1) {
       this.boards.splice(boardWithIdIndex, 1);
+      //firebase
+      this.fireData.deleteBoard(id);
       this.saveLocalStorage();
     }
   }
@@ -61,6 +71,15 @@ export class BoardsService {
     if (board) {
       board.name = updatedBoard.name;
       board.columns = updatedBoard.columns;
+      //firebase
+      this.fireData
+        .updateBoard(board.id, board)
+        .then(() => {
+          console.log('Board was updated succesfully.');
+        })
+        .catch((error) => {
+          console.error('Error:', error);
+        });
       this.saveLocalStorage();
     }
   }

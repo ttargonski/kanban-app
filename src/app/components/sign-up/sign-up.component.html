@@ -1,0 +1,42 @@
+<form>
+  <mat-card class="form-card" style="text-align: center">
+    <h1>Sign up</h1>
+
+    <div style="margin-bottom: 15px">
+      <mat-error *ngFor="let err of errors"> {{ err }}</mat-error>
+    </div>
+
+    <mat-form-field>
+      <mat-label>Email</mat-label>
+
+      <input
+        [(ngModel)]="email"
+        name="email"
+        type="email"
+        matInput
+        placeholder="Ex. pat@example.com"
+      />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Password</mat-label>
+      <input [(ngModel)]="password" name="password" type="password" matInput />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Confirm Password</mat-label>
+      <input
+        [(ngModel)]="cpassword"
+        name="cpassword"
+        type="password"
+        matInput
+      />
+    </mat-form-field>
+
+    <button (click)="register()" mat-raised-button color="primary">
+      Sign up
+    </button>
+
+    <div class="form-links">
+      <a href="sign-in">Already have an account? Click Here</a>
+    </div>
+  </mat-card>
+</form>

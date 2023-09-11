@@ -42,10 +42,18 @@ body {
   padding: 10px;
   margin: 0;
   background-color: rgba(255, 255, 255, 0.8);
+  color: #154858;
+
+  .navbar-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
   a {
-    color: #154858;
     text-decoration: none;
     padding-right: 15px;
+    color: #154858;
   }
   .logo {
     font-weight: bold;
@@ -175,6 +183,7 @@ header {
   margin: 70px 0;
   padding: 25px 0;
   width: 100%;
+  min-height: 500px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -237,4 +246,74 @@ header {
       }
     }
   }
+}
+
+form {
+  padding: 25px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  min-width: 380px;
+
+  .form-card {
+    padding: 25px;
+    background-color: rgba(255, 255, 255, 0.9);
+
+    .btn-google {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      background-color: #fff;
+      border: none;
+      border-radius: 5px;
+      margin-top: 15px;
+      padding: 8px;
+      div {
+        width: 32px;
+        height: 32px;
+      }
+      &:hover {
+        cursor: pointer;
+        box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.15);
+      }
+    }
+
+    .form-links {
+      margin-top: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      a {
+        text-decoration: none;
+        color: rgba(0, 0, 0, 0.7);
+      }
+    }
+
+    button {
+      font-size: 16px;
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  header {
+    flex-direction: column;
+    .home-text {
+      text-align: center;
+    }
+    .home-img {
+      width: 70%;
+      margin-top: 2rem;
+      img {
+        display: block;
+        width: 100%;
+      }
+    }
+  }
+}
+
+/* Another media query for screens with a minimum width of 1024 pixels */
+@media screen and (min-width: 1024px) {
 }
