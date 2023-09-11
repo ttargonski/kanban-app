@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/shared/services/auth.service';
-import { Router, NavigationEnd } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -8,22 +7,11 @@ import { Router, NavigationEnd } from '@angular/router';
   styleUrls: ['./navbar.component.scss'],
 })
 export class NavbarComponent implements OnInit {
-  userEmail: string = '';
-
-  constructor(private authService: AuthService, private router: Router) {
-    this.router.events.subscribe((ev) => {
-      if (ev instanceof NavigationEnd) {
-        this.setUsername();
-      }
-    });
-    this.setUsername();
-  }
-  ngOnInit(): void {
-    this.setUsername();
-  }
+  constructor(private authService: AuthService) {}
+  ngOnInit(): void {}
 
   setUsername() {
-    this.userEmail = this.authService.getUserEmail();
+    return this.authService.getUserEmail();
   }
 
   isLogged(): boolean {
@@ -32,6 +20,5 @@ export class NavbarComponent implements OnInit {
 
   logout() {
     this.authService.SignOut();
-    this.userEmail = '';
   }
 }

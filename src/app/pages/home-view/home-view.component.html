@@ -3,6 +3,21 @@
     <h1>Welcome on KanbanApp</h1>
     <p>The best way to planning your tasks</p>
     <a
+      *ngIf="isLogged()"
+      style="
+        color: white;
+        font-size: 16px;
+        border-color: white;
+        text-decoration: none;
+        margin-top: 1rem;
+      "
+      mat-stroked-button
+      routerLink="/boards"
+    >
+      Go to <strong>Your boards</strong>
+    </a>
+    <a
+      *ngIf="!isLogged()"
       style="
         color: white;
         font-size: 16px;
@@ -13,7 +28,7 @@
       mat-stroked-button
       routerLink="/sign-in"
     >
-      Try now!
+      Try Now!
     </a>
   </div>
 
